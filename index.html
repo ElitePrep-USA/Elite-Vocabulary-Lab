@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Elite Vocabulary Lab is a free SAT and ACT vocabulary study, flashcard, quiz, and progress tool from Elite Prep." />
+  <meta property="og:title" content="Elite Vocabulary Lab" />
+  <meta property="og:description" content="Study, practice, and master 306 essential SAT and ACT vocabulary words." />
+  <meta property="og:type" content="website" />
+  <title>Elite Vocabulary Lab</title>
+  <link rel="preload" href="assets/elite-seal.png" as="image" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <header class="site-header">
+    <div class="brand-lockup" aria-label="Elite Vocabulary Lab">
+      <div class="seal-wrap"><img src="assets/elite-seal.png" alt="Elite Prep seal" class="brand-seal" /></div>
+      <div>
+        <p class="eyebrow">Elite Prep Free Resource</p>
+        <h1>Elite Vocabulary Lab</h1>
+        <p class="subtitle">Master the vocabulary behind SAT &amp; ACT success.</p>
+        <div class="hero-actions"><button data-jump="practice">Start Practice</button><button class="secondary-light" data-jump="study">Browse Words</button></div>
+      </div>
+    </div>
+    <aside class="header-card" aria-label="Vocabulary word count">
+      <span id="wordCount">306</span><small>Vocabulary Words</small>
+    </aside>
+  </header>
+
+  <nav class="tabs" aria-label="Main navigation">
+    <button class="tab active" data-view="home" aria-current="page">Home</button>
+    <button class="tab" data-view="study">Study</button>
+    <button class="tab" data-view="flashcards">Flashcards</button>
+    <button class="tab" data-view="practice">Practice Quiz</button>
+    <button class="tab" data-view="sets">Fixed Sets</button>
+    <button class="tab" data-view="missed">Missed Words</button>
+    <button class="tab" data-view="dashboard">Dashboard</button>
+  </nav>
+
+  <main id="mainContent" tabindex="-1">
+    <section id="home" class="view active-view">
+      <div class="welcome-grid">
+        <article class="welcome-panel">
+          <p class="eyebrow dark">Study • Practice • Master</p>
+          <h2>Build stronger vocabulary one word at a time.</h2>
+          <p>This app includes Study Mode, flashcards, randomized quizzes, 15 fixed practice sets, missed-word review, and a local progress dashboard. Your progress stays only in this browser.</p>
+          <div class="mini-metrics">
+            <div><strong id="homeMastered">0</strong><span>Words Practiced</span></div>
+            <div><strong id="homeBest">0%</strong><span>Best Score</span></div>
+            <div><strong id="homeStreak">0</strong><span>Study Streak</span></div>
+          </div>
+        </article>
+        <article class="daily-card">
+          <img src="assets/elite-seal.png" alt="" aria-hidden="true" />
+          <h3>Today’s Goal</h3>
+          <p>Complete one 20-question quiz or review five missed words.</p>
+          <button data-jump="practice">Begin</button>
+        </article>
+      </div>
+      <div class="mode-cards" aria-label="Learning modes">
+        <button class="mode-card" data-jump="study"><span>01</span><strong>Study Mode</strong><small>Search, filter, and review all words.</small></button>
+        <button class="mode-card" data-jump="flashcards"><span>02</span><strong>Flashcards</strong><small>Flip cards with mouse or keyboard.</small></button>
+        <button class="mode-card" data-jump="practice"><span>03</span><strong>Practice Quiz</strong><small>Random 20-question quizzes.</small></button>
+        <button class="mode-card" data-jump="sets"><span>04</span><strong>Fixed 15 Sets</strong><small>Consistent sets for assignments.</small></button>
+        <button class="mode-card" data-jump="missed"><span>05</span><strong>Missed Review</strong><small>Focus on words to revisit.</small></button>
+        <button class="mode-card" data-jump="dashboard"><span>06</span><strong>Dashboard</strong><small>Local progress and scores.</small></button>
+      </div>
+    </section>
+
+    <section id="study" class="view">
+      <div class="mode-header"><div><h2>Study Mode</h2><p>Search the full word list, review definitions, and learn through examples.</p></div></div>
+      <div class="toolbar" role="search">
+        <label class="sr-only" for="searchInput">Search vocabulary</label>
+        <input id="searchInput" type="search" placeholder="Search words, definitions, synonyms, antonyms..." />
+        <label class="sr-only" for="letterFilter">Filter by first letter</label>
+        <select id="letterFilter"><option value="all">All letters</option></select>
+        <button id="clearFilters" class="secondary">Clear</button>
+      </div>
+      <div id="studyList" class="card-grid"></div>
+    </section>
+
+    <section id="flashcards" class="view">
+      <div class="mode-header"><div><h2>Flashcard Mode</h2><p>Click the card, or press Enter or Space, to reveal the answer.</p></div><div class="button-row"><button id="shuffleCards">Shuffle</button><button id="resetFlashcards" class="secondary">Start Over</button></div></div>
+      <div class="flashcard" id="flashcard" tabindex="0" role="button" aria-label="Flashcard. Click to flip."></div>
+      <div class="flash-actions"><button id="prevCard" class="secondary">Previous</button><span id="cardProgress" aria-live="polite"></span><button id="nextCard">Next</button></div>
+    </section>
+
+    <section id="practice" class="view">
+      <div class="mode-header"><div><h2>Practice Quiz Mode</h2><p>Generate a new 20-question quiz: 10 definitions, 5 synonyms, and 5 antonyms.</p></div><button id="startRandomQuiz">Start Random Quiz</button></div>
+      <div id="randomQuizArea"></div>
+    </section>
+
+    <section id="sets" class="view">
+      <div class="mode-header"><div><h2>Fixed 15 Sets</h2><p>Each set has 20 questions and saves your best score locally.</p></div></div>
+      <div id="setButtons" class="set-grid"></div>
+      <div id="fixedQuizArea"></div>
+    </section>
+
+    <section id="missed" class="view">
+      <div class="mode-header"><div><h2>Missed Words Review</h2><p>Words missed in quizzes are saved only in this browser.</p></div><button id="clearMissed" class="secondary danger">Clear Missed Words</button></div>
+      <div id="missedTools" class="toolbar"><button id="quizMissed" class="secondary">Quiz Missed Words</button></div>
+      <div id="missedWords" class="card-grid"></div>
+    </section>
+
+    <section id="dashboard" class="view">
+      <div class="mode-header"><div><h2>Local Progress Dashboard</h2><p>Your results stay on your device. No login, name, or email is required.</p></div><button id="resetProgress" class="secondary danger">Reset Progress</button></div>
+      <div class="dashboard-grid">
+        <div class="metric"><span id="dashAttempts">0</span><small>Quizzes Completed</small></div>
+        <div class="metric"><span id="dashAverage">0%</span><small>Average Score</small></div>
+        <div class="metric"><span id="dashBest">0%</span><small>Best Score</small></div>
+        <div class="metric"><span id="dashMissed">0</span><small>Missed Words</small></div>
+      </div>
+      <div class="panel"><h3>Mastery Level</h3><div class="mastery"><div class="bar big"><span id="masteryBar" style="width:0%"></span></div><p id="masteryText">Complete quizzes to begin tracking mastery.</p></div></div>
+      <div class="panel"><h3>Recent Quiz Results</h3><div id="recentResults"></div></div>
+      <div class="panel"><h3>Fixed Set Progress</h3><div id="setProgress"></div></div>
+    </section>
+  </main>
+
+  <footer>
+    <img src="assets/elite-seal.png" alt="" aria-hidden="true" />
+    <p>Elite Vocabulary Lab stores progress only in the user’s browser using local storage.</p>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="data/vocabulary.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
